@@ -1,7 +1,11 @@
+using ITTalents.Models;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<QlbanVaLiContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("QlbanVaLiContext")));
 
 var app = builder.Build();
 
