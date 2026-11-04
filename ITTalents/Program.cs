@@ -1,11 +1,17 @@
 using ITTalents.Models;
+using ITTalents.Repository;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<QlbanVaLiContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("QlbanVaLiContext")));
+
+
+var connectionString = builder.Configuration.GetConnectionString("QlbanVaLiContext");
+builder.Services.AddDbContext<QlbanVaLiContext>(x => x.UseSqlServer(connectionString));
+
+builder.Services.AddScoped<ILoaiSpRepository, LoaiSpRepository>();
 
 var app = builder.Build();
 
