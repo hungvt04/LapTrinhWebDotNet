@@ -21,6 +21,19 @@ namespace ITTalents.Controllers
             return View(lst);
         }
 
+        public IActionResult SanPhamTheoLoai(String maLoai, int? page)
+        {
+            //List<TDanhMucSp> listSP = db.TDanhMucSps.Where
+            //    (x => x.MaLoai == maLoai).OrderBy(x => x.TenSp).ToList();
+
+            int pageSize = 8;
+            int pageNumber = page == null || page < 1 ? 1 : page.Value;
+            var listSP = db.TDanhMucSps.AsNoTracking().Where(x => x.MaLoai == maLoai).OrderBy(x => x.TenSp);
+            PagedList <TDanhMucSp> sps = new PagedList<TDanhMucSp>(listSP, pageNumber, pageSize);
+            ViewBag.maLoai = maLoai;
+            return View(sps);
+        }
+
         public IActionResult Privacy()
         {
             return View();
