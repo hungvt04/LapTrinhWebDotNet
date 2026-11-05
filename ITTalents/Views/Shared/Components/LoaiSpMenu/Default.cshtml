@@ -21,15 +21,38 @@
 <script>
     function showProductByCategory(getUrl) {
         var str = "";
+        var imgBase = '@Url.Content("~/1LayoutOgani/img/ImageProducts/")';
         $.ajax({
             type: 'GET',
             url: getUrl,
             dataType: "json",
             success: function (data) {
                 $.each(data, function (key, val) {
-                    str += '<p>' + val.tenSp + '</p>'
+                    console.log(val);
+                    str += `
+                        <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
+                            <div class="featured__item">
+                                    <div class="featured__item__pic set-bg" data-setbg="${imgBase}${val.anhDaiDien}">
+                                    <ul class="featured__item__pic__hover">
+                                        <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                    </ul>
+                                </div>
+                                <div class="featured__item__text">
+                                                    <h6><a href="@(Url.Action("ProductDetail", "Home"))?maSP=${val.maSp}">${val.tenSp}</a></h6>
+                                            <h5>$${val.giaNhoNhat}</h5>
+                                </div>
+                            </div>
+                        </div>
+                    `
                 });
                 $('#displayProducts').html(str);
+
+                // Gán lại ảnh nền cho các thẻ vừa thêm (main.js của Ogani chỉ làm việc này 1 lần lúc tải trang)
+                $('#displayProducts .set-bg').each(function () {
+                    $(this).css('background-image', 'url(' + $(this).data('setbg') + ')');
+                });
             },
             error: function(xhr) {
                 alert(xhr.responseText);
