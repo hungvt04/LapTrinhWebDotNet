@@ -27,6 +27,7 @@
                         <th>@Html.DisplayNameFor(model => model[0].CanNang)</th>
                         <th>@Html.DisplayNameFor(model => model[0].ThoiGianBaoHanh)</th>
                         <th>@Html.DisplayNameFor(model => model[0].GiaLonNhat)</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -47,6 +48,10 @@
                             <td>@Html.DisplayFor(modelItem => item.CanNang)</td>
                             <td>@Html.DisplayFor(modelItem => item.ThoiGianBaoHanh)</td>
                             <td>@Html.DisplayFor(modelItem => item.GiaLonNhat)</td>
+                            <td>
+                                <a asp-controller="HomeAdmin" asp-action="SuaSanPham" asp-route-maSp="@item.MaSp">Edit</a>
+                                <a asp-controller="HomeAdmin" asp-action="SuaSanPham" asp-route-maSp="@item.MaSp">Delete</a>
+                            </td>
                         </tr>
                     }
                 </tbody>
