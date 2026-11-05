@@ -1,4 +1,5 @@
 using ITTalents.Models;
+using ITTalents.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
@@ -40,6 +41,20 @@ namespace ITTalents.Controllers
             var anhSP = db.TAnhSps.Where(x => x.MaSp == maSP).ToList();
             ViewBag.anhSP = anhSP;
             return View(sanPham);
+        }
+
+        public IActionResult ProductDetail(String maSP)
+        {
+            var sanPham = db.TDanhMucSps.SingleOrDefault(x => x.MaSp == maSP);
+            var anhSP = db.TAnhSps.Where(x => x.MaSp == maSP).ToList();
+
+            var homeProductDetailViewModel = new HomeProductDetailViewModel
+            {
+                danhMucSp = sanPham,
+                anhSps = anhSP
+            };
+
+            return View(homeProductDetailViewModel);
         }
 
         public IActionResult Privacy()
