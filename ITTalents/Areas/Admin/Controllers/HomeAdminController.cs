@@ -97,5 +97,27 @@ namespace ITTalents.Areas.Admin.Controllers
             ViewBag.MaDt = new SelectList(db.TLoaiDts.ToList(), "MaDt", "TenLoai");
             return View(sanPham);
         }
+
+        [Route("XoaSanPham")]
+        [HttpGet]
+        public IActionResult XoaSanPham(String maSp)
+        {
+            TempData["Message"] = "";
+            var sanPham = db.TChiTietSanPhams.Where(x => x.MaSp == maSp).ToList();
+            if(sanPham.Count() > 0)
+            {
+                TempData["Message"] = "Không xóa được sản phẩm này";
+                return RedirectToAction("DanhMucSanPham", "HomeAdmin");
+            }
+            var anhSanPhams = db.TAnhSps.Where(x => x.MaSp == maSp).ToList();
+            if (anhSanPhams.Any())
+            {
+                db.RemoveRange(anhSanPhams);
+            }
+            db.Remove(db.TDanhMucSps.Find(maSp));
+            db.SaveChanges();
+            TempData["Message"] = "Sản phẩm đã được xóa";
+            return RedirectToAction("DanhMucSanPham", "HomeAdmin");
+        }
     }
 }
