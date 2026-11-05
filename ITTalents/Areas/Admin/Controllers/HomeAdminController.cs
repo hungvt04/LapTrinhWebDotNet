@@ -3,9 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using X.PagedList;
+using ITTalents.Models.Authetication;
 
 namespace ITTalents.Areas.Admin.Controllers
 {
+    [Authentication]
     [Area("admin")]
     [Route("/admin")]
     [Route("/admin/homeadmin")]

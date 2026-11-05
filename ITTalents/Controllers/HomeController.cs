@@ -1,5 +1,6 @@
 using ITTalents.Models;
 using ITTalents.ViewModels;
+using ITTalents.Models.Authetication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
@@ -12,6 +13,7 @@ namespace ITTalents.Controllers
 
         QlbanVaLiContext db = new QlbanVaLiContext();
 
+        [Authentication]
         public IActionResult Index(int? page)
         {
             //var listSP = db.TDanhMucSps.ToList();
