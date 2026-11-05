@@ -32,9 +32,15 @@ app.UseSession();
 
 app.MapStaticAssets();
 
+// Truy cập vào đâu đầu tiên
+//app.MapControllerRoute(
+//    name: "default",
+//    pattern: "{controller=Access}/{action=Login}/{id?}")
+//    .WithStaticAssets();
+
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Access}/{action=Login}/{id?}")
+    pattern: "{controller=Home}/{action=Index}/{id?}")
     .WithStaticAssets();
 
 

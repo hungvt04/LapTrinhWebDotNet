@@ -10,8 +10,30 @@
         <ul>
             @foreach(var item in Model)
             {
-                <li><a asp-controller="Home" asp-action="SanPhamTheoLoai" asp-route-maLoai="@item.MaLoai">@item.Loai</a></li>
+                @* <li><a asp-controller="Home" asp-action="SanPhamTheoLoai" asp-route-maLoai="@item.MaLoai">@item.Loai</a></li> *@
+                var getUrl = "https://localhost:7140/api/productapi/" + item.MaLoai;
+                <li><a style="cursor: pointer" onclick="showProductByCategory('@getUrl')">@item.Loai</a></li>
             }
         </ul>
     </div>
 </div>
+
+<script>
+    function showProductByCategory(getUrl) {
+        var str = "";
+        $.ajax({
+            type: 'GET',
+            url: getUrl,
+            dataType: "json",
+            success: function (data) {
+                $.each(data, function (key, val) {
+                    str += '<p>' + val.tenSp + '</p>'
+                });
+                $('#displayProducts').html(str);
+            },
+            error: function(xhr) {
+                alert(xhr.responseText);
+            }
+        })
+    }
+</script>

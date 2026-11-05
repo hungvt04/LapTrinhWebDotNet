@@ -13,7 +13,7 @@ namespace ITTalents.Controllers
 
         QlbanVaLiContext db = new QlbanVaLiContext();
 
-        [Authentication]
+        //[Authentication]
         public IActionResult Index(int? page)
         {
             //var listSP = db.TDanhMucSps.ToList();
