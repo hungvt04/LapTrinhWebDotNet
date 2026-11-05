@@ -13,6 +13,7 @@
 <button>
     <a asp-controller="HomeAdmin" asp-action="ThemSanPhamMoi">Thêm mới</a>
 </button>
+<p>@TempData["Message"]</p>
 <div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
@@ -50,7 +51,7 @@
                             <td>@Html.DisplayFor(modelItem => item.GiaLonNhat)</td>
                             <td>
                                 <a asp-controller="HomeAdmin" asp-action="SuaSanPham" asp-route-maSp="@item.MaSp">Edit</a>
-                                <a asp-controller="HomeAdmin" asp-action="SuaSanPham" asp-route-maSp="@item.MaSp">Delete</a>
+                                <a asp-controller="HomeAdmin" asp-action="XoaSanPham" asp-route-maSp="@item.MaSp">Delete</a>
                             </td>
                         </tr>
                     }
