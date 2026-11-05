@@ -29,7 +29,7 @@
         <div class="row featured__filter">
             @foreach (var item in Model)
             {
-                <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
+                @* <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
                     <div class="featured__item">
                         <div class="featured__item__pic set-bg" data-setbg="@Url.Content("../1LayoutOgani/img/ImageProducts/" + item.AnhDaiDien)">
                             <ul class="featured__item__pic__hover">
@@ -39,11 +39,12 @@
                             </ul>
                         </div>
                         <div class="featured__item__text">
-                            <h6><a href="#">@item.TenSp</a></h6>
+                            <h6><a asp-controller="Home" asp-action="ChiTietSanPham" asp-route-maSP="@item.MaSp">@item.TenSp</a></h6>
                             <h5>$@item.GiaNhoNhat</h5>
                         </div>
                     </div>
-                </div>
+                </div> *@
+                @await Html.PartialAsync("PartialSanPham", item)
             }
         </div>
         <div class="product__pagination">
