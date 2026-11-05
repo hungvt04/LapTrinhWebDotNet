@@ -34,6 +34,14 @@ namespace ITTalents.Controllers
             return View(sps);
         }
 
+        public IActionResult ChiTietSanPham(String maSP)
+        {
+            var sanPham = db.TDanhMucSps.SingleOrDefault(x => x.MaSp == maSP);
+            var anhSP = db.TAnhSps.Where(x => x.MaSp == maSP).ToList();
+            ViewBag.anhSP = anhSP;
+            return View(sanPham);
+        }
+
         public IActionResult Privacy()
         {
             return View();
